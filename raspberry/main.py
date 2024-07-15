@@ -6,7 +6,8 @@ led_red = LED(26)
 led_green = LED(19)
 led_yellow = LED(13)
 button = Button(5)
-
+button.when_pressed = led_yellow.on
+button.when_released = led_yellow.off
 led_red.on()
 if button.is_held:
     sleep(5)
