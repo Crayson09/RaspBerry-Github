@@ -1,20 +1,16 @@
-import RPi.GPIO as GPIO
-import time
-
-from gpiozero import LED
-
-GPIO.setmode(GPIO.BOARD)
-PIN = 21
-GPIO.setup(PIN, GPIO.IN)
-led = LED(20)
-
-print ("HC-SR505 Bewegungssensor starten...")
-time.sleep(2)
-print ("Bewegungssensor aktiviert...")
-
+from machine import Pin
+import utime
+led = Pin(21, Pin.OUT)
+pir = Pin(20, Pin.IN, Pin.PULL_UP)
+led.low()
+utime.sleep(3)
 while True:
-   if GPIO.input(PIN):
-      print ("Bewegung erkannt am " + (time.strftime("%H:%M:%S")))
-      led.blink()
-      time.sleep(9)
-   time.sleep(1)
+   print(pir.value())
+   if pir.value() == 0:
+       print("LED On")
+       led.high()
+       utime.sleep(5)
+   else:
+       print("Waiting for movement")
+       led.low()
+utime.sleep(0.2)
