@@ -7,7 +7,7 @@ led_green = LED(19)
 led_yellow = LED(13)
 button = Button(5)
 button.when_released = led_yellow.off
-if button.is_held:
+if button.when_activated:
     print("Pressed")
     sleep(2)
     led_red.off()
