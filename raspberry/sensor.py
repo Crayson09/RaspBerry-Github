@@ -20,3 +20,6 @@ try:
 except KeyboardInterrupt:
     print("Quit")
     GPIO.cleanup()
+except RuntimeError as e:
+    print(f"RuntimeError: {e}")
+    GPIO.cleanup()
