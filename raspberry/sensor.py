@@ -11,6 +11,6 @@ print ("Bewegingssensor geactiveerd...")
 
 while True:
    if GPIO.input(PIN):
-      print "(Beweging gedetecteerd op " + (time.strftime("%H:%M:%S")))
+      print ("Beweging gedetecteerd op " + (time.strftime("%H:%M:%S")))
       time.sleep(9)
    time.sleep(1)
