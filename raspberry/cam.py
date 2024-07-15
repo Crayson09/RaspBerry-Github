@@ -1,8 +1,21 @@
 import cv2
 from matplotlib import pyplot as plt
 import glob
+from picamera2 import Picamera2, Preview
+
 
 COLOR_FACE = (255, 0, 255)  # Farbe für Rahmen ums Gesicht (Magenta)
+
+picam2 = Picamera2()
+camera_config = picam2.create_preview_configuration()
+picam2.configure(camera_config)
+picam2.start_preview(Preview.QTGL)
+picam2.start()
+time.sleep(5)
+picam2.capture_file("image.jpg")
+
+
+time.sleep(5)
 
 image_files = glob.glob("*.jpg")  # Alle jpg-Dateien im aktuellen Verzeichnis in Liste speichern
 
