@@ -14,7 +14,7 @@ for file in image_files:
     img_gray = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2GRAY)  # Ein Graustufenbild für die Erkennung machen
 
     # Gesichts-Klassifikatoren aus Datei laden
-    face_cascade = cv2.CascadeClassifier('/haarcascade_frontalface_default.xml')
+    face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 
     # Eigentliche Gesichtserkennung ausführen
     faces = face_cascade.detectMultiScale(img_gray, scaleFactor=1.2, minNeighbors=5)
