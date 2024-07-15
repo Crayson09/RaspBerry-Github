@@ -12,8 +12,9 @@ try:
         if GPIO.input(PIR_PIN):
             print("Motion Detected!")
             led.on()
-            time.sleep(10)
+            time.sleep(1)
             led.off()
+            time.sleep(8)
         time.sleep(1)
 except KeyboardInterrupt:
     print("Quit")
