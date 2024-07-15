@@ -1,6 +1,5 @@
 import cv2
 import subprocess
-import numpy as np
 
 # Funktion zum Erfassen eines Bildes mit libcamera
 def capture_image():
@@ -36,7 +35,7 @@ def main():
 
     # Anzeigen des Bildes mit erkannten Gesichtern
     cv2.imshow('Image with Faces', image)
-    cv2.waitKey(0)
+    cv2.waitKey(0)  # Warten auf eine Taste, bevor das Programm endet
     cv2.destroyAllWindows()
 
 if __name__ == "__main__":
