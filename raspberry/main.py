@@ -1,6 +1,7 @@
 from gpiozero import LED, Button
 from time import sleep
 import random
+from picamera2 import Picamera2, Preview
 
 # Initialisierung
 led_green = LED(19)
