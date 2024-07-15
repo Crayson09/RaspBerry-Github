@@ -44,6 +44,9 @@ for file in image_files:
 
         cropped_faces.append(scaled_face)
 
+    # Flag, um zu prüfen, ob ein ähnliches Gesicht gefunden wurde
+    similar_found = False
+
     # Vergleich der ausgeschnittenen Gesichter mit Referenzgesicht
     if len(reference_gray) > 0:
         for face in cropped_faces:
@@ -58,7 +61,12 @@ for file in image_files:
                 plt.imshow(cv2.cvtColor(face, cv2.COLOR_BGR2RGB))
                 plt.title(f"Gesicht in {file}")
                 plt.show()
+                similar_found = True
                 break  # Nur das erste passende Gesicht anzeigen
+
+        # Wenn keine Ähnlichkeit gefunden wurde
+        if not similar_found:
+            print(f"Person in {file} sieht nicht ähnlich aus.")
 
     # Anzeigen des Bildes mit markierten Gesichtern (ohne Ähnlichkeitsprüfung)
     for (x, y, w, h) in faces:
