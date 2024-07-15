@@ -9,10 +9,12 @@ SIMILARITY_THRESHOLD = 0.8  # Schwellenwert für die Ähnlichkeitsbewertung
 
 # Liste der Bilddateien im aktuellen Verzeichnis
 image_files = glob.glob("*.jpg")
-
 # Referenzbild der gesuchten Person (Beispiel: Muss angepasst werden)
 reference_image = cv2.imread('reference.jpg', cv2.IMREAD_COLOR)
 reference_gray = cv2.cvtColor(reference_image, cv2.COLOR_BGR2GRAY)
+
+# Dimensionen des Referenzgesichts
+(rw, rh) = reference_gray.shape[::-1]
 
 # Initiiere den Gesichtserkennungsklassifikator
 face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
@@ -36,18 +38,17 @@ for file in image_files:
     # Gesichter ausschneiden und in Liste speichern
     for (x, y, w, h) in faces:
         face = img_rgb[y:y+h, x:x+w]
-        cropped_faces.append(face)
+
+        # Gesicht auf die Größe des Referenzgesichts skalieren
+        scaled_face = cv2.resize(face, (rw, rh))
+
+        cropped_faces.append(scaled_face)
 
     # Vergleich der ausgeschnittenen Gesichter mit Referenzgesicht
     if len(reference_gray) > 0:
-        (rw, rh) = reference_gray.shape[::-1]  # Dimensionen des Referenzgesichts
-
         for face in cropped_faces:
-            # Gesicht auf die Größe des Referenzgesichts skalieren
-            scaled_face = cv2.resize(face, (rw, rh))
-
             # Berechnung der Ähnlichkeit (Mittlerer quadratischer Fehler)
-            mse = np.mean((reference_gray - scaled_face)**2)
+            mse = np.mean((reference_gray - cv2.cvtColor(face, cv2.COLOR_BGR2GRAY))**2)
             similarity_score = 1 / (1 + mse)  # Höherer Wert bedeutet höhere Ähnlichkeit
 
             # Ausgabe der Ähnlichkeit und Anzeige des Bildes mit markiertem Gesicht
