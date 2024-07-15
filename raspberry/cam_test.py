@@ -17,7 +17,7 @@ reference_gray = cv2.cvtColor(reference_image, cv2.COLOR_BGR2GRAY)
 (rw, rh) = reference_gray.shape[::-1]
 
 # Initiiere den Gesichtserkennungsklassifikator
-face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
+face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 
 # Für jedes Bild Gesichtserkennung durchführen
 for file in image_files:
