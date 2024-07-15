@@ -10,7 +10,7 @@ SIMILARITY_THRESHOLD = 0.1 # Schwellenwert für die Ähnlichkeitsbewertung
 # Liste der Bilddateien im aktuellen Verzeichnis
 image_files = glob.glob("*.jpg")
 # Referenzbild der gesuchten Person (Beispiel: Muss angepasst werden)
-reference_image = cv2.imread('reference.png', cv2.IMREAD_COLOR)
+reference_image = cv2.imread('reference.jpg', cv2.IMREAD_COLOR)
 reference_gray = cv2.cvtColor(reference_image, cv2.COLOR_BGR2GRAY)
 
 # Dimensionen des Referenzgesichts
