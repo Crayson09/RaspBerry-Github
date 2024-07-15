@@ -9,9 +9,8 @@ def button_pressed():
     picam2 = Picamera2()
     camera_config = picam2.create_preview_configuration()
     picam2.configure(camera_config)
-    picam2.start_preview(Preview.QTGL)
     picam2.start()
-    sleep(2)
+    sleep(1)
     picam2.capture_file("button_pressed.jpg")
 
 
