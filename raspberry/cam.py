@@ -1,42 +1,36 @@
 import cv2
-import subprocess
+from matplotlib import pyplot as plt
+import glob
 
-# Funktion zum Erfassen eines Bildes mit libcamera
-def capture_image():
-    # Führen Sie libcamera-Command aus, um ein Bild aufzunehmen
-    subprocess.run(["libcamera-still", "-o", "image.jpg", "--nopreview"])
+COLOR_FACE = (255, 0, 255)  # Farbe für Rahmen ums Gesicht (Magenta)
 
-    # Lesen Sie das aufgenommene Bild ein
-    image = cv2.imread("image.jpg")
-    return image
+image_files = glob.glob("*.jpg")  # Alle jpg-Dateien im aktuellen Verzeichnis in Liste speichern
 
-# Gesichtserkennung mit OpenCV
-def detect_faces(image):
-    # Laden Sie den vortrainierten Haar-Cascade-Klassifikator
-    face_cascade = cv2.CascadeClassifier('pfad/zu/haarcascade_frontalface_default.xml')
+# Für jedes Bild Gesichtserkennung machen
+for file in image_files:
+    img_bgr = cv2.imread(file, cv2.IMREAD_COLOR)  # Die Bilddatei farbig einlesen
+    b, g, r = cv2.split(img_bgr)  # Die Farbwerte auslesen (cv2 erstellt BGR-Bild)
+    img_rgb = cv2.merge([r, g, b])  # Aus den BGR-Farbwerten ein RGB-Bild machen
+    img_gray = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2GRAY)  # Ein Graustufenbild für die Erkennung machen
 
-    # Konvertieren Sie das Bild in Graustufen
-    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    # Gesichts-Klassifikatoren aus Datei laden
+    face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_frontalface_default.xml")
 
-    # Erkennen Sie Gesichter
-    faces = face_cascade.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=5, minSize=(30, 30))
-    return faces
+    # Eigentliche Gesichtserkennung ausführen
+    faces = face_cascade.detectMultiScale(img_gray, scaleFactor=1.2, minNeighbors=5)
 
-def main():
-    # Erfassen Sie ein Bild
-    image = capture_image()
+    print("Anzahl erkannte Gesichter:", len(faces))  # Anzahl erkannte Gesichter ausgeben
 
-    # Erkennen Sie Gesichter im Bild
-    faces = detect_faces(image)
-
-    # Zeichnen Sie Rechtecke um erkannte Gesichter
+    # Erkannte Gesichter durchgehen.
+    # Die erkannten Gesichter werden durch ein umrahmendes Rechteck gegeben:
+    # (x, y, w, h) stellen Koordinaten, Breite und Höhe des Rechtecks dar
     for (x, y, w, h) in faces:
-        cv2.rectangle(image, (x, y), (x + w, y + h), (255, 0, 0), 2)
+        # das Gesicht durch ein farbiges Rechteck im Bild markieren
+        cv2.rectangle(img_rgb, (x, y), (x + w, y + h), COLOR_FACE, 2)
 
-    # Anzeigen des Bildes mit erkannten Gesichtern
-    cv2.imshow('Image with Faces', image)
-    cv2.waitKey(0)  # Warten auf eine Taste, bevor das Programm endet
-    cv2.destroyAllWindows()
+    plt.axis('off')  # Diagramm-Achsen ausblenden
+    plt.imshow(img_rgb)  # Dem Diagramm das Bild hinzufügen
+    plt.title(file)  # Titel des Diagramms setzen
+    plt.show()  # Diagramm anzeigen
 
-if __name__ == "__main__":
-    main()
+exit()
