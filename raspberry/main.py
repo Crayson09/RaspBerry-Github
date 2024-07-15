@@ -5,8 +5,11 @@ from time import sleep
 led_red = LED(26)
 led_green = LED(19)
 led_yellow = LED(13)
-button = Button(5)
-button.when_released = led_yellow.off
+button = Button(2)
+
+button.when_activated()
+print('You pushed me')
+
 if button.when_activated:
     print("Pressed")
     sleep(2)
