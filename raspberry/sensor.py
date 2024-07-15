@@ -5,12 +5,12 @@ GPIO.setmode(GPIO.BOARD)
 PIN = 21
 GPIO.setup(PIN, GPIO.IN)
 
-print ("Start HC-SR505 bewegingssensor...")
+print ("HC-SR505 Bewegungssensor starten...")
 time.sleep(2)
-print ("Bewegingssensor geactiveerd...")
+print ("Bewegungssensor aktiviert...")
 
 while True:
    if GPIO.input(PIN):
-      print ("Beweging gedetecteerd op " + (time.strftime("%H:%M:%S")))
+      print ("Bewegung erkannt am " + (time.strftime("%H:%M:%S")))
       time.sleep(9)
    time.sleep(1)
