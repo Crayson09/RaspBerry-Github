@@ -24,7 +24,7 @@ def button_pressed():
 
 def button_pressed_2():
     global leuchtet, running
-    print("Pressed 1")
+    print("Pressed 2")
     if leuchtet:
         led_green.off()
         print("Spieler 1 hat gewonnen")
