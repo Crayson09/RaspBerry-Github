@@ -5,7 +5,7 @@ import glob
 
 # Konstanten
 COLOR_FACE = (255, 0, 255)  # Farbe für Rahmen ums Gesicht (Magenta)
-SIMILARITY_THRESHOLD = 0.1 # Schwellenwert für die Ähnlichkeitsbewertung
+SIMILARITY_THRESHOLD = 0.1  # Schwellenwert für die Ähnlichkeitsbewertung
 
 # Liste der Bilddateien im aktuellen Verzeichnis
 image_files = glob.glob("*.jpg")
@@ -17,7 +17,7 @@ reference_gray = cv2.cvtColor(reference_image, cv2.COLOR_BGR2GRAY)
 (rw, rh) = reference_gray.shape[::-1]
 
 # Initiiere den Gesichtserkennungsklassifikator
-face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
+face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
 
 # Für jedes Bild Gesichtserkennung durchführen
 for file in image_files:
@@ -50,8 +50,11 @@ for file in image_files:
     # Vergleich der ausgeschnittenen Gesichter mit Referenzgesicht
     if len(reference_gray) > 0:
         for face in cropped_faces:
+            # Gesicht auf Graustufen umwandeln
+            face_gray = cv2.cvtColor(face, cv2.COLOR_BGR2GRAY)
+
             # Berechnung der Ähnlichkeit (Mittlerer quadratischer Fehler)
-            mse = np.mean((reference_gray - cv2.cvtColor(face, cv2.COLOR_BGR2GRAY))**2)
+            mse = np.mean((reference_gray - face_gray)**2)
             similarity_score = 1 / (1 + mse)  # Höherer Wert bedeutet höhere Ähnlichkeit
 
             # Ausgabe der Ähnlichkeit und Anzeige des Bildes mit markiertem Gesicht
