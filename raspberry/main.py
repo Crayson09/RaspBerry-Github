@@ -1,12 +1,20 @@
 from gpiozero import LED, Button
 from time import sleep
 import random
+from picamera2 import Picamera2, Preview
 
 # Initialisierung
 led_green = LED(19)
 button = Button(2)
 button_2 = Button(4)
 random_time = random.randint(5, 20)
+
+
+
+
+
+
+
 
 # Variable für den LED-Zustand und Programmstatus
 leuchtet = False
@@ -38,6 +46,6 @@ while running:
     led_green.on()
     leuchtet = True
 
-  
+
 
 print("Programm beendet")
