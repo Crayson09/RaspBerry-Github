@@ -1,5 +1,6 @@
 import RPi.GPIO as GPIO
 import time
+from picamera2 import Picamera2, Preview
 
 from gpiozero import LED
 
