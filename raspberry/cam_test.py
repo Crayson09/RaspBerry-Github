@@ -5,7 +5,7 @@ import glob
 
 # Konstanten
 COLOR_FACE = (255, 0, 255)  # Farbe für Rahmen ums Gesicht (Magenta)
-SIMILARITY_THRESHOLD = 0.8  # Schwellenwert für die Ähnlichkeitsbewertung
+SIMILARITY_THRESHOLD = 0.1 # Schwellenwert für die Ähnlichkeitsbewertung
 
 # Liste der Bilddateien im aktuellen Verzeichnis
 image_files = glob.glob("*.jpg")
