@@ -2,6 +2,7 @@ import cv2
 from matplotlib import pyplot as plt
 import glob
 from picamera2 import Picamera2, Preview
+import time
 
 
 COLOR_FACE = (255, 0, 255)  # Farbe für Rahmen ums Gesicht (Magenta)
