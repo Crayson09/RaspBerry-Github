@@ -13,7 +13,7 @@ def capture_image():
 # Gesichtserkennung mit OpenCV
 def detect_faces(image):
     # Laden Sie den vortrainierten Haar-Cascade-Klassifikator
-    face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
+    face_cascade = cv2.CascadeClassifier('pfad/zu/haarcascade_frontalface_default.xml')
 
     # Konvertieren Sie das Bild in Graustufen
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
