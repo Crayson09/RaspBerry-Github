@@ -5,7 +5,7 @@ import random
 # Initialisierung
 led_green = LED(19)
 button = Button(2)
-button_2 = Button(4)
+button_2 = Button(3)
 random_time = random.randint(5, 20)
 
 
