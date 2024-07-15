@@ -19,7 +19,7 @@ try:
         if GPIO.input(PIR_PIN):
             print("Motion Detected!")
             led.on()
-            time.sleep(3)  
+            time.sleep(3)
             picam2.capture_file(f"einbrecher{number}.jpg")
             print(f"Aufgenommen: einbrecher{number}.jpg")
             number += 1
