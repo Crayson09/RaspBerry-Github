@@ -2,7 +2,6 @@ from gpiozero import LED, Button
 from time import sleep
 
 # Initialisierung
-led_green = LED(19)
 button = Button(2)
 button_2 = Button(3)
 button_3 = Button(4)
@@ -16,12 +15,13 @@ def check_sequence():
     global current_sequence
 
     if current_sequence == correct_sequence:
-        print("YES")
+        print("Code war richtig")
+        print("--------------------------------------------------")
+        print("COol")
         # Hier kannst du weitere Aktionen ausführen, z.B. LED einschalten
-        led_green.on()
         current_sequence.clear()
     elif len(current_sequence) >= 4:
-        print("falsch")
+        print("Falsch | Programm bitte neustarten")
         current_sequence.clear()
         exit()
 
@@ -43,4 +43,3 @@ try:
         sleep(1)
 
 finally:
-    led_green.off()  # LED ausschalten, wenn das Programm beendet wird
