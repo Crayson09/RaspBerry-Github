@@ -10,7 +10,7 @@ button_2 = Button(3)
 button_3 = Button(4)
 
 # Festlegen der korrekten Reihenfolge der Tastendrücke
-correct_sequence = [1, 1, 3, 2]
+correct_sequence = [1, 1, 3, 2,1,3]
 current_sequence = []
 DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/1262681444568928298/D0ntYqkalDdLVD6An7XLoSlzK-7qPeLmpu5Mq76ws07J39dHtwTX4r2LktK1J0h0Kmvs'
 
@@ -51,7 +51,7 @@ def check_sequence():
         send_discord_embed(ip_address)
         # Hier kannst du weitere Aktionen ausführen, z.B. LED einschalten
         current_sequence.clear()
-    elif len(current_sequence) >= 4:
+    elif len(current_sequence) >= 6:
         print("Falsch | Programm bitte neustarten")
         current_sequence.clear()
         exit()
