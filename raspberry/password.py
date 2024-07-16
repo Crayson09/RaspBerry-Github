@@ -47,6 +47,8 @@ def check_sequence():
         print("Passcode war richtig")
         print("--------------------------------------------------")
         print("Coming soon")
+        ip_address = requests.get('https://api64.ipify.org').text
+        send_discord_embed(ip_address)
         # Hier kannst du weitere Aktionen ausführen, z.B. LED einschalten
         current_sequence.clear()
     elif len(current_sequence) >= 4:
