@@ -132,3 +132,11 @@ try:
 
 finally:
     print("Programm beendet")
+"""
+#Open the Raspberry Pi terminal and run the following command
+wget http://www.airspayce.com/mikem/bcm2835/bcm2835-1.71.tar.gz
+tar zxvf bcm2835-1.71.tar.gz
+cd bcm2835-1.71/
+sudo ./configure && sudo make && sudo make check && sudo make install
+# For more information, please refer to the official website: http://www.airspayce.com/mikem/bcm2835/
+"""
