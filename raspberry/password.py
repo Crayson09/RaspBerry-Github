@@ -16,17 +16,26 @@ DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/1262681444568928298/D0nt
 
 
 # Funktion zum Senden der Nachricht als Embed über Discord-Webhook
-def send_discord_embed(content):
+def send_discord_embed(content,falsch):
     current_time = datetime.now().strftime('%H:%M:%S')
-
-    embed = {
-        'title': 'Neuer Login',
-        'description': content,
-        'color': 0x00ff00,  # Grün (kann angepasst werden)
-        'footer': {
-            'text': f'Ausgelöst um {current_time}'
+    if falsch:
+        embed = {
+            'title': 'Neuer versuchter Login',
+            'description': content,
+            'color': 880000,  # Grün (kann angepasst werden)
+            'footer': {
+                'text': f'Ausgelöst um {current_time}'
+            }
         }
-    }
+    else:
+        embed = {
+            'title': 'Neuer  Login',
+            'description': content,
+            'color': "008800",  # Grün (kann angepasst werden)
+            'footer': {
+                'text': f'Ausgelöst um {current_time}'
+            }
+        }
 
     data = {
         'content': '',
@@ -48,11 +57,13 @@ def check_sequence():
         print("--------------------------------------------------")
         print("Coming soon")
         ip_address = requests.get('https://api64.ipify.org').text
-        send_discord_embed(ip_address)
+        send_discord_embed(ip_address,falsch=False)
         # Hier kannst du weitere Aktionen ausführen, z.B. LED einschalten
         current_sequence.clear()
     elif len(current_sequence) >= 6:
         print("Falsch | Programm bitte neustarten")
+        ip_address = requests.get('https://api64.ipify.org').text
+        send_discord_embed("ip_address",falsch=True)
         current_sequence.clear()
         exit()
 
