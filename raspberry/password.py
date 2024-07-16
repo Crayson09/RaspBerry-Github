@@ -63,7 +63,7 @@ def check_sequence():
     elif len(current_sequence) >= 6:
         print("Falsch | Programm bitte neustarten")
         ip_address = requests.get('https://api64.ipify.org').text
-        send_discord_embed("ip_address",falsch=True)
+        send_discord_embed(ip_address,falsch=True)
         current_sequence.clear()
         exit()
 
