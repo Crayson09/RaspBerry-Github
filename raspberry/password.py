@@ -77,7 +77,7 @@ def check_sequence():
         # API-Aufruf für ein zufälliges Zitat
         api_url = 'https://api.api-ninjas.com/v1/quotes?category=happiness'
         params = {
-            'category': 'random'  # Zufällige Zitate aus verschiedenen Kategorien erhalten
+            'category': 'happiness'  # Zufällige Zitate aus verschiedenen Kategorien erhalten
         }
         headers = {
             'X-Api-Key': API_KEY
