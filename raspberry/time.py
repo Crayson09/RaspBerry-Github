@@ -4,7 +4,7 @@ import time
 
 # Funktion zum Ausgeben der Nachricht mit variablem Inhalt
 def print_custom_message(content):
-    print(f"Hier ist deine automatische Nachricht: {content}")
+    print(f"{content}")
 
 # Funktion zum Hinzufügen neuer Zeitpläne
 def add_new_schedule(day, hour, minute, job, content):
