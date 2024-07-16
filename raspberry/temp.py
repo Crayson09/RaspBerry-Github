@@ -1,16 +1,21 @@
-import Adafruit_DHT
+# Bibliotheken laden
+from machine import Pin
+from time import sleep
+from dht import DHT22
 
-# Wähle den Sensortyp aus
-sensor = Adafruit_DHT.DHT22
+# Initialisierung GPIO und DHT22
+sleep(1)
+dht22_sensor = DHT22(Pin(21, Pin.IN, Pin.PULL_UP))
 
-# GPIO-Pin, an dem der Data-Pin des Sensors angeschlossen ist
-pin = 21
-
-# Lese die Temperatur- und Feuchtigkeitsdaten
-humidity, temperature = Adafruit_DHT.read_retry(sensor, pin)
-
-if humidity is not None and temperature is not None:
-    print(f'Temperatur: {temperature:.1f}°C')
-    print(f'Luftfeuchtigkeit: {humidity:.1f}%')
-else:
-    print('Fehler beim Auslesen des Sensors')
+# Wiederholung (Endlos-Schleife)
+while True:
+    # Messung durchführen
+    dht22_sensor.measure()
+    # Werte lesen
+    temp = dht22_sensor.temperature()
+    humi = dht22_sensor.humidity()
+    # Werte ausgeben
+    print('      Temperatur:', temp, '°C')
+    print('Luftfeuchtigkeit:', humi, '%')
+    print()
+    sleep(3)
