@@ -6,7 +6,7 @@ def print_message():
     print("Hier ist deine automatische Nachricht!")
 
 # Zeitplan festlegen (Beispiel: Jeden Tag um 8:00 Uhr)
-schedule.every().day.at("9:46").do(print_message)
+schedule.every().day.at("9:46:10").do(print_message)
 
 # Endlosschleife zum Überprüfen des Zeitplans
 while True:
