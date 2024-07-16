@@ -23,6 +23,7 @@ def check_sequence():
     elif len(current_sequence) >= 4:
         print("falsch")
         current_sequence.clear()
+        exit()
 
 
 # Event-Handler zuweisen
