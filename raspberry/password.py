@@ -1,3 +1,6 @@
+from datetime import datetime
+
+import requests
 from gpiozero import LED, Button
 from time import sleep
 
@@ -9,15 +12,41 @@ button_3 = Button(4)
 # Festlegen der korrekten Reihenfolge der Tastendrücke
 correct_sequence = [1, 1, 3, 2]
 current_sequence = []
+DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/1262681444568928298/D0ntYqkalDdLVD6An7XLoSlzK-7qPeLmpu5Mq76ws07J39dHtwTX4r2LktK1J0h0Kmvs'
+
+
+# Funktion zum Senden der Nachricht als Embed über Discord-Webhook
+def send_discord_embed(content):
+    current_time = datetime.now().strftime('%H:%M:%S')
+
+    embed = {
+        'title': 'Neuer Login',
+        'description': content,
+        'color': 0x00ff00,  # Grün (kann angepasst werden)
+        'footer': {
+            'text': f'Ausgelöst um {current_time}'
+        }
+    }
+
+    data = {
+        'content': '',
+        'embeds': [embed]
+    }
+
+    try:
+        response = requests.post(DISCORD_WEBHOOK_URL, json=data)
+        response.raise_for_status()
+    except requests.exceptions.RequestException as e:
+        print(f'Fehler beim Senden der Nachricht als Embed über Discord-Webhook: {e}')
 
 
 def check_sequence():
     global current_sequence
 
     if current_sequence == correct_sequence:
-        print("Code war richtig")
+        print("Passcode war richtig")
         print("--------------------------------------------------")
-        print("COol")
+        print("Coming soon")
         # Hier kannst du weitere Aktionen ausführen, z.B. LED einschalten
         current_sequence.clear()
     elif len(current_sequence) >= 4:
