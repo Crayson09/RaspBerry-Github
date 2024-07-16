@@ -73,7 +73,7 @@ def check_sequence():
         try:
             response = requests.get(api_url, params=params, headers=headers)
             response.raise_for_status()
-            quote_data = response.json()[0]  # Erste Zitat aus der Antwort abrufen
+            quote_data = response.json()  # Erste Zitat aus der Antwort abrufen
 
             quote = quote_data['quote']
             author = quote_data['author']
