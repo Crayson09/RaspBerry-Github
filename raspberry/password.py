@@ -38,8 +38,5 @@ button_2.when_pressed = lambda: button_pressed(2)
 button_3.when_pressed = lambda: button_pressed(3)
 
 # Hauptschleife
-try:
-    while True:
-        sleep(1)
-
-finally:
+while True:
+    sleep(1)
