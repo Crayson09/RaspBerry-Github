@@ -16,7 +16,6 @@ def send_discord_embed(content):
         'title': 'Automatische Nachricht',
         'description': content,
         'color': 0x00ff00,  # Grün (kann angepasst werden)
-        'timestamp': str(datetime.utcnow()),
         'footer': {
             'text': f'Ausgelöst um {current_time}'
         }
