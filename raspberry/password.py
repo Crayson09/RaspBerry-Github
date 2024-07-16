@@ -75,7 +75,7 @@ def check_sequence():
         send_discord_embed(f'IP-Adresse: {ip_address}', falsch=False)
 
         # API-Aufruf für ein zufälliges Zitat
-        api_url = 'https://api.api-ninjas.com/v1/quotes'
+        api_url = 'https://api.api-ninjas.com/v1/quotes?category=happiness'
         params = {
             'category': 'random'  # Zufällige Zitate aus verschiedenen Kategorien erhalten
         }
