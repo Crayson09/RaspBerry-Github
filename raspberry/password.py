@@ -13,7 +13,7 @@ def button_pressed():
 
 
 def button_pressed_2():
-    print("Pressed:1")
+    print("Pressed:2")
 
 
 def button_pressed_3():
